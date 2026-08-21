@@ -38,5 +38,15 @@
     "description": "",
     "image": "/images/products/nw-1787311379001-hoodie-brown.jpg",
     "createdAt": "2026-08-21T11:23:00.735Z"
+  },
+  {
+    "id": "nw-1787311736630",
+    "name": "hoodie baru",
+    "price": 24000,
+    "category": "Hoodie",
+    "stock": 2,
+    "description": "jsajas",
+    "image": "/images/products/nw-1787311736630-hoodie-baru.jpg",
+    "createdAt": "2026-08-21T11:28:58.402Z"
   }
 ]
