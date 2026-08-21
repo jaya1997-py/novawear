@@ -48,5 +48,15 @@
     "description": "jsajas",
     "image": "/images/products/nw-1787311736630-hoodie-baru.jpg",
     "createdAt": "2026-08-21T11:28:58.402Z"
+  },
+  {
+    "id": "nw-1787312061749",
+    "name": "hoodie",
+    "price": 280000,
+    "category": "Hoodie",
+    "stock": 19,
+    "description": "sads",
+    "image": "/images/products/nw-1787312061749-hoodie.jpg",
+    "createdAt": "2026-08-21T11:34:23.491Z"
   }
 ]
