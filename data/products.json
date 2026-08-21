@@ -28,5 +28,15 @@
     "description": "",
     "image": "/images/products/nw-1787311363629-hoodie-brown.jpg",
     "createdAt": "2026-08-21T11:22:45.595Z"
+  },
+  {
+    "id": "nw-1787311379001",
+    "name": "hoodie brown",
+    "price": 221313,
+    "category": "Hoodie",
+    "stock": 34,
+    "description": "",
+    "image": "/images/products/nw-1787311379001-hoodie-brown.jpg",
+    "createdAt": "2026-08-21T11:23:00.735Z"
   }
 ]
