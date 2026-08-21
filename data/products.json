@@ -68,5 +68,15 @@
     "description": "sas",
     "image": "https://raw.githubusercontent.com/jaya1997-py/novawear/main/public/images/products/nw-1787316028387-hoodie.jpg",
     "createdAt": "2026-08-21T12:40:30.172Z"
+  },
+  {
+    "id": "nw-1787316163234",
+    "name": "TEST GITHUB",
+    "price": 10000,
+    "category": "Hoodie",
+    "stock": 1,
+    "description": "Testing GitHub",
+    "image": "https://raw.githubusercontent.com/jaya1997-py/novawear/main/public/images/products/nw-1787316163234-test-github.jpg",
+    "createdAt": "2026-08-21T12:42:44.996Z"
   }
 ]
