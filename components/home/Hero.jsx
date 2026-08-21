@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Hero() {
@@ -5,37 +6,73 @@ export default function Hero() {
     <section className="hero">
       <div className="hero-container">
 
+        {/* BAGIAN KIRI */}
         <div className="hero-content">
-          <p className="hero-subtitle">
-            NEW COLLECTION 2026
+          <p className="hero-label">
+            NEW COLLECTION — 2026
           </p>
 
-          <h1>
+          <h1 className="hero-title">
             DEFINE
             <br />
             YOUR
             <br />
-            STYLE.
+            <span>STYLE.</span>
           </h1>
 
           <p className="hero-description">
-            Koleksi fashion modern untuk menemani
-            gaya Anda setiap hari.
+            Temukan koleksi fashion modern yang dirancang
+            untuk membantu Anda mengekspresikan gaya terbaik
+            setiap hari.
           </p>
 
-          <Link href="/katalog" className="hero-button">
-            EXPLORE COLLECTION
-            <span>→</span>
-          </Link>
-        </div>
+          <div className="hero-actions">
+            <Link href="/katalog" className="hero-button">
+              SHOP COLLECTION
+              <span>→</span>
+            </Link>
 
-        <div className="hero-image">
-          <div className="hero-image-placeholder">
-            <span>NOVAWEAR</span>
-            <p>NEW SEASON</p>
+            <Link
+              href="/koleksi"
+              className="hero-secondary-button"
+            >
+              EXPLORE LOOKBOOK
+            </Link>
           </div>
         </div>
 
+        {/* BAGIAN KANAN - GAMBAR ASLI */}
+        <div className="hero-visual">
+
+          <div className="hero-image-box">
+            <Image
+              src="/images/hero/hero-fashion.jpg"
+              alt="NOVAWEAR Fashion Collection"
+              fill
+              priority
+              className="hero-fashion-image"
+            />
+          </div>
+
+          <div className="hero-floating-card">
+            <span>01</span>
+
+            <div>
+              <p>ESSENTIAL</p>
+              <strong>NEW ARRIVAL</strong>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div className="hero-bottom">
+        <span>SCROLL TO EXPLORE</span>
+
+        <div className="hero-line"></div>
+
+        <span>EST. 2026</span>
       </div>
     </section>
   );
