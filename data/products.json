@@ -58,5 +58,15 @@
     "description": "sads",
     "image": "/images/products/nw-1787312061749-hoodie.jpg",
     "createdAt": "2026-08-21T11:34:23.491Z"
+  },
+  {
+    "id": "nw-1787316028387",
+    "name": "hoodie",
+    "price": 250022,
+    "category": "Hoodie",
+    "stock": 23,
+    "description": "sas",
+    "image": "https://raw.githubusercontent.com/jaya1997-py/novawear/main/public/images/products/nw-1787316028387-hoodie.jpg",
+    "createdAt": "2026-08-21T12:40:30.172Z"
   }
 ]
