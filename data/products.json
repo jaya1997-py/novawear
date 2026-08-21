@@ -8,5 +8,15 @@
     "description": "",
     "image": "/images/products/nw-1787310941175-hoodie-brown.jpg",
     "createdAt": "2026-08-21T11:15:43.723Z"
+  },
+  {
+    "id": "nw-1787311160983",
+    "name": "hoodie brown",
+    "price": 383253,
+    "category": "Hoodie",
+    "stock": 9,
+    "description": "dfd",
+    "image": "/images/products/nw-1787311160983-hoodie-brown.jpg",
+    "createdAt": "2026-08-21T11:19:22.764Z"
   }
 ]
