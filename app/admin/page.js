@@ -1,7 +1,56 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import AdminSidebar from "@/components/admin/AdminSidebar";
 
-export default function AdminDashboard() {
+function formatPrice(price) {
+  return new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+    maximumFractionDigits: 0,
+  }).format(price);
+}
+
+export default function ProductsPage() {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  async function loadProducts() {
+    try {
+      setLoading(true);
+      setError("");
+
+      const response = await fetch("/api/products", {
+        cache: "no-store",
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          data.error || "Gagal mengambil produk."
+        );
+      }
+
+      setProducts(data.products || []);
+    } catch (error) {
+      console.error("LOAD PRODUCTS ERROR:", error);
+
+      setError(
+        error.message ||
+          "Gagal mengambil data produk."
+      );
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    loadProducts();
+  }, []);
+
   return (
     <div className="admin-layout">
 
@@ -10,17 +59,18 @@ export default function AdminDashboard() {
       <main className="admin-main">
 
         <header className="admin-header">
+
           <div>
             <p className="admin-eyebrow">
-              NOVAWEAR ADMIN
+              CATALOG MANAGEMENT
             </p>
 
             <h1>
-              Dashboard
+              Products
             </h1>
 
             <p className="admin-welcome">
-              Manage your store from one place.
+              Manage all products in your store.
             </p>
           </div>
 
@@ -30,117 +80,148 @@ export default function AdminDashboard() {
           >
             + Add Product
           </Link>
+
         </header>
 
-        <section className="admin-stats">
+        <section className="admin-panel products-panel">
 
-          <div className="admin-stat-card">
-            <p>Total Products</p>
-            <strong>0</strong>
-            <span>Products in catalog</span>
-          </div>
+          <div className="admin-panel-header">
 
-          <div className="admin-stat-card">
-            <p>Orders</p>
-            <strong>0</strong>
-            <span>Total orders</span>
-          </div>
+            <div>
+              <p>CATALOG</p>
 
-          <div className="admin-stat-card">
-            <p>Customers</p>
-            <strong>0</strong>
-            <span>Registered customers</span>
-          </div>
-
-          <div className="admin-stat-card">
-            <p>Revenue</p>
-            <strong>Rp0</strong>
-            <span>Total revenue</span>
-          </div>
-
-        </section>
-
-        <section className="admin-content-grid">
-
-          <div className="admin-panel">
-            <div className="admin-panel-header">
-              <div>
-                <p>PRODUCTS</p>
-                <h2>Recent Products</h2>
-              </div>
-
-              <Link href="/admin/products">
-                View All →
-              </Link>
+              <h2>
+                All Products
+              </h2>
             </div>
 
+            <span className="product-total">
+              {products.length} products
+            </span>
+
+          </div>
+
+          {loading && (
             <div className="admin-empty">
 
               <div className="admin-empty-icon">
-                ◇
+                ◌
               </div>
 
               <h3>
-                No products yet
+                Loading products...
               </h3>
 
               <p>
-                Start building your catalog
-                by adding your first product.
+                Reading products from GitHub.
               </p>
 
-              <Link
-                href="/admin/products/new"
-                className="admin-empty-button"
-              >
-                Add Your First Product
-              </Link>
-
             </div>
-          </div>
+          )}
 
-          <div className="admin-panel">
-            <div className="admin-panel-header">
-              <div>
-                <p>STORE</p>
-                <h2>Quick Actions</h2>
+          {!loading && error && (
+            <div className="admin-empty">
+
+              <div className="admin-empty-icon">
+                !
               </div>
-            </div>
 
-            <div className="quick-actions">
+              <h3>
+                Failed to load products
+              </h3>
 
-              <Link href="/admin/products/new">
-                <span>＋</span>
-                <div>
-                  <strong>Add Product</strong>
-                  <small>
-                    Create a new product
-                  </small>
-                </div>
-              </Link>
+              <p>
+                {error}
+              </p>
 
-              <Link href="/admin/products">
-                <span>◈</span>
-                <div>
-                  <strong>Manage Products</strong>
-                  <small>
-                    View your catalog
-                  </small>
-                </div>
-              </Link>
-
-              <Link href="/">
-                <span>↗</span>
-                <div>
-                  <strong>View Store</strong>
-                  <small>
-                    Open your storefront
-                  </small>
-                </div>
-              </Link>
+              <button
+                type="button"
+                className="admin-empty-button"
+                onClick={loadProducts}
+              >
+                Try Again
+              </button>
 
             </div>
-          </div>
+          )}
+
+          {!loading &&
+            !error &&
+            products.length === 0 && (
+              <div className="admin-empty">
+
+                <div className="admin-empty-icon">
+                  ◇
+                </div>
+
+                <h3>
+                  No products available
+                </h3>
+
+                <p>
+                  Your products will appear here
+                  after you add them.
+                </p>
+
+                <Link
+                  href="/admin/products/new"
+                  className="admin-empty-button"
+                >
+                  Add Product
+                </Link>
+
+              </div>
+            )}
+
+          {!loading &&
+            !error &&
+            products.length > 0 && (
+
+              <div className="products-grid">
+
+                {products.map((product) => (
+
+                  <article
+                    key={product.id}
+                    className="product-card"
+                  >
+
+                    <div className="product-card-image">
+
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                      />
+
+                    </div>
+
+                    <div className="product-card-content">
+
+                      <span className="product-card-category">
+                        {product.category}
+                      </span>
+
+                      <h3>
+                        {product.name}
+                      </h3>
+
+                      <strong>
+                        {formatPrice(product.price)}
+                      </strong>
+
+                      <p>
+                        Stock: {product.stock}
+                      </p>
+
+                    </div>
+
+                  </article>
+
+                ))}
+
+              </div>
+
+            )}
 
         </section>
 

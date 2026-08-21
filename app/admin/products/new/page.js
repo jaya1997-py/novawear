@@ -6,22 +6,44 @@ export default function NewProductPage() {
   return (
     <div className="admin-layout">
 
+      {/* =========================
+          ADMIN SIDEBAR
+      ========================== */}
+
       <AdminSidebar />
+
+
+      {/* =========================
+          MAIN CONTENT
+      ========================== */}
 
       <main className="admin-main">
 
+
+        {/* =========================
+            HEADER
+        ========================== */}
+
         <header className="admin-header">
+
           <div>
+
             <p className="admin-eyebrow">
               CATALOG / PRODUCTS
             </p>
 
-            <h1>Add Product</h1>
+            <h1>
+              Add Product
+            </h1>
 
             <p className="admin-welcome">
               Create a new product for your store.
             </p>
+
           </div>
+
+
+          {/* BACK BUTTON */}
 
           <Link
             href="/admin/products"
@@ -29,7 +51,13 @@ export default function NewProductPage() {
           >
             ← Back to Products
           </Link>
+
         </header>
+
+
+        {/* =========================
+            PRODUCT FORM
+        ========================== */}
 
         <ProductForm />
 
